@@ -1,0 +1,106 @@
+global:
+  sql_adapter: "wpcli"
+
+local:
+  vhost: "<%= ENV['LOCAL_HOST'] %>"
+  wordpress_path: "/var/www/html" # use an absolute path here
+
+  database:
+    name: "<%= ENV['MYSQL_WORDPRESS'] %>"
+    user: "<%= ENV['MYSQL_USER'] %>"
+    password: "<%= ENV['MYSQL_PASSWORD'] %>" # could be blank, so always use quotes around
+    host: "db"
+
+production:
+  vhost: "<%= ENV['PRODUCTION_HOST'] %>"
+  wordpress_path: "<%= ENV['PRODUCTION_PATH'] %>" # use an absolute path here
+
+  database:
+    name: "<%= ENV['PRODUCTION_DB_NAME'] %>"
+    user: "<%= ENV['PRODUCTION_DB_USER'] %>"
+    password: "<%= ENV['PRODUCTION_DB_PASSWORD'] %>"
+    host: "<%= ENV['PRODUCTION_DB_HOST'] %>"
+    port: "<%= ENV['PRODUCTION_DB_PORT'] %>"
+    # mysqldump_options: '--max_allowed_packet=1G' # Only available if using SSH
+    # mysql_options: '--protocol=TCP' # mysql command is used to import db
+
+  exclude:
+    - '.git/'
+    - '.gitignore'
+    - '.gitmodules'
+    - '.env'
+    - 'node_modules/'
+    - 'bin/'
+    - 'tmp/*'
+    - 'Gemfile*'
+    - 'Movefile'
+    - 'movefile'
+    - 'movefile.yml'
+    - 'movefile.yaml'
+    - 'wp-config.php'
+    - 'wp-content/*.sql.gz'
+    - '*.orig'
+
+  # paths: # you can customize wordpress internal paths
+  #   wp_content: wp-content
+  #   uploads: wp-content/uploads
+  #   plugins: wp-content/plugins
+  #   mu_plugins: wp-content/mu-plugins
+  #   themes: wp-content/themes
+  #   languages: wp-content/languages
+
+  ssh:
+    host: "<%= ENV['PRODUCTION_SSH_HOST'] %>"
+    user: "<%= ENV['PRODUCTION_SSH_USER'] %>"
+    password: "<%= ENV['PRODUCTION_SSH_PASSWORD'] %>" # password is optional, will use public keys if available.
+    port: "<%= ENV['PRODUCTION_SSH_PORT'] %>" # Port is optional
+    rsync_options: '--verbose' # Additional rsync options, optional
+  #   gateway: # Gateway is optional
+  #     host: host
+  #     user: user
+  #     password: password # password is optional, will use public keys if available.
+
+  # ftp:
+  #   user: "<%= ENV['PRODUCTION_FTP_USER'] %>"
+  #   password: "<%= ENV['PRODUCTION_FTP_PASSWORD'] %>"
+  #   host: "<%= ENV['PRODUCTION_FTP_HOST'] %>"
+  #   passive: true
+  #   port: "<%= ENV['PRODUCTION_FTP_PORT'] %>" # Port is optional
+  #   scheme: ftps # default `ftp`. alternative `sftp`
+
+  # hooks: # Remote hooks won't work with FTP
+  #   push:
+  #     before:
+  #       - command: 'echo "do something"'
+  #         where: local
+  #         raise: false # raise is true by default
+  #     after:
+  #       - command: 'echo "do something"'
+  #         where: remote
+  #   pull:
+  #     before:
+  #       - command: 'echo "do something"'
+  #         where: local
+  #         raise: false
+  #     after:
+  #       - command: 'echo "do something"'
+  #         where: remote
+  #
+  # forbid:
+  #   push:
+  #     db: false
+  #     plugins: false
+  #     themes: false
+  #     languages: false
+  #     uploads: false
+  #     mu-plugins: false
+  #   pull:
+  #     db: false
+  #     plugins: false
+  #     themes: false
+  #     languages: false
+  #     uploads: false
+  #     mu-plugins: false
+
+# staging: # multiple environments can be specified
+#   [...]

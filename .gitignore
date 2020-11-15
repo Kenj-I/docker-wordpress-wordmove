@@ -1,0 +1,7 @@
+.env
+movefile.yml
+docker-compose.yml
+data
+images/*/*
+!images/**/*.example
+
