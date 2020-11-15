@@ -39,13 +39,14 @@ services:
 
     wordmove:
         container_name: '${COMPOSE_PROJECT_NAME}_wordmove'
-        image: 'welaika/wordmove'
+        image: 'welaika/wordmove:php7'
         tty: true
         env_file: ./.env
         volumes:
-            - ./movefile.yml:/home/movefile.yml
-            - ../wordpress:/var/www/html:cached
+            - ./movefile.yml:/html/Movefile
+            - ../wordpress:/html:cached
             - ~/.ssh:/root/.ssh:ro
         depends_on:
             - wordpress
+
 

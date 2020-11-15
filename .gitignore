@@ -2,6 +2,7 @@
 movefile.yml
 docker-compose.yml
 data
+ssh
 images/*/*
 !images/**/*.example
 

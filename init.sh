@@ -1,4 +1,3 @@
-# init.shがあるディレクトリに移動
 cd `dirname $0`
 dir_path=`pwd -P`
 examplefiles=`find $dir_path -maxdepth 3 -type f -name "*.example"`
