@@ -42,8 +42,9 @@ services:
         image: 'welaika/wordmove:php7'
         tty: true
         env_file: ./.env
+        working_dir: /root
         volumes:
-            - ./movefile.yml:/html/Movefile
+            - ./movefile.yml:/root/Movefile
             - ../wordpress:/html:cached
             - ~/.ssh:/root/.ssh:ro
         depends_on:
